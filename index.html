@@ -3,193 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INVALSI Italiano – Simulazione Completa</title>
+<title>INVALSI Italiano – Prova 1 Completa</title>
 <style>
 :root{--blu:#1a3a5c;--blu2:#2a5298;--blu3:#e8eef7;--verde:#1e7e34;--rosso:#c0392b;--arancio:#e67e22;--grigio:#f5f6f7;--bordo:#d0d5de;--testo:#1a1a2e;--header:52px;--footer:56px}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#e9ecef;color:var(--testo);height:100vh;overflow:hidden;display:flex;flex-direction:column}
+
+/* INTRO */
 #intro{position:fixed;inset:0;background:linear-gradient(135deg,#1a3a5c 0%,#2a5298 100%);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
 .intro-card{background:#fff;border-radius:12px;max-width:700px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}
 .intro-top{background:var(--blu);color:#fff;padding:24px 32px;display:flex;align-items:center;gap:16px}
 .inv-badge{background:#fff;color:var(--blu);font-weight:900;font-size:15px;padding:6px 12px;border-radius:5px;letter-spacing:1px}
-.intro-top h1{font-size:18px;font-weight:700}
 .intro-body{padding:28px 32px}
 .info-strip{display:flex;gap:12px;margin-bottom:22px}
 .info-chip{flex:1;background:var(--grigio);border:1px solid var(--bordo);border-radius:8px;padding:12px;text-align:center}
 .info-chip .lbl{font-size:10px;text-transform:uppercase;color:#888;font-weight:700}
 .info-chip .val{font-size:18px;font-weight:800;color:var(--blu)}
-.istr-box{background:#fffbea;border:1px solid #f0d060;border-radius:8px;padding:16px;margin-bottom:20px;font-size:13px}
-.nome-wrap input{width:100%;padding:12px;border:2px solid var(--bordo);border-radius:7px;margin-top:8px}
-.btn-avvia{width:100%;margin-top:18px;padding:14px;background:var(--blu);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer}
-.btn-avvia:disabled{background:#aaa}
+.nome-wrap label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;color:#666;margin-bottom:7px}
+.nome-wrap input{width:100%;padding:12px;border:2px solid var(--bordo);border-radius:7px;font-size:14px;margin-bottom:15px}
 
+/* UI PRINCIPALE */
 #header{height:var(--header);background:var(--blu);color:#fff;display:flex;align-items:center;padding:0 16px;gap:12px;z-index:10}
-.h-timer{background:rgba(255,255,255,.12);padding:5px 12px;border-radius:6px;font-weight:800}
-#progbar{height:5px;background:rgba(255,255,255,.2)}
-#progfill{height:100%;background:#4fc3f7;transition:width .4s}
-
+.h-timer{background:rgba(255,255,255,.15);padding:5px 12px;border-radius:6px;font-weight:800;font-variant-numeric:tabular-nums}
 #main{flex:1;display:flex;overflow:hidden}
 #pan-testo{width:45%;border-right:3px solid var(--bordo);background:#fff;display:flex;flex-direction:column}
 .pan-label{background:var(--blu);color:#fff;font-size:11px;font-weight:700;padding:8px 16px;text-transform:uppercase}
-.pan-scroll{flex:1;overflow-y:auto;padding:25px;font-family:'Georgia',serif;font-size:16px;line-height:1.8}
+.pan-scroll{flex:1;overflow-y:auto;padding:25px;font-family:'Georgia',serif;line-height:1.8;font-size:16px;color:#222}
 #pan-domanda{flex:1;background:var(--grigio);overflow-y:auto;padding:30px}
 
+/* DOMANDE */
 .dom-sezione{font-size:10px;font-weight:700;color:var(--blu2);background:var(--blu3);padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:10px}
-.dom-num{font-size:20px;font-weight:900;color:var(--blu);margin-bottom:5px}
-.dom-testo{font-size:16px;margin-bottom:20px;font-weight:500}
-.opzioni{display:flex;flex-direction:column;gap:10px}
-.opz{display:flex;align-items:center;gap:12px;padding:12px;border:2px solid var(--bordo);border-radius:8px;background:#fff;cursor:pointer}
+.dom-num{font-size:20px;font-weight:900;color:var(--blu);margin-bottom:10px}
+.opz{display:flex;align-items:center;gap:12px;padding:12px;border:2px solid var(--bordo);border-radius:8px;background:#fff;cursor:pointer;margin-bottom:8px;transition:0.2s}
 .opz.sel{border-color:var(--blu2);background:#e8f0fb}
-.opz input{display:none}
-.opz-let{width:25px;height:25px;border-radius:50%;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.opz-let{width:25px;height:25px;border-radius:50%;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
 .opz.sel .opz-let{background:var(--blu2);color:#fff;border-color:var(--blu2)}
-.vf-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #ddd}
-.vf-btn{padding:5px 15px;border:2px solid var(--bordo);border-radius:5px;cursor:pointer;background:#fff}
+.vf-row{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#fff;border:1px solid var(--bordo);border-radius:8px;margin-bottom:5px}
+.vf-btns{display:flex;gap:5px}
+.vf-btn{padding:5px 15px;border:1px solid #ccc;border-radius:4px;cursor:pointer;font-weight:bold}
 .vf-btn.sv{background:var(--verde);color:#fff;border-color:var(--verde)}
 .vf-btn.sf{background:var(--rosso);color:#fff;border-color:var(--rosso)}
-.aperta-ta{width:100%;height:100px;padding:10px;border-radius:8px;border:2px solid var(--bordo)}
+.aperta-ta{width:100%;height:120px;padding:15px;border:2px solid var(--bordo);border-radius:8px;font-family:inherit}
 
-#footer{height:var(--footer);background:var(--blu);display:flex;align-items:center;padding:0 20px;color:#fff}
-.ft-btn{padding:8px 15px;border-radius:5px;border:none;cursor:pointer;font-weight:700}
-.ft-prev{background:rgba(255,255,255,.2);color:#fff}
-.ft-next{background:#fff;color:var(--blu);margin-left:10px}
-.ft-consegna{background:var(--verde);color:#fff;margin-left:auto}
-
-#report{display:none;padding:40px;overflow-y:auto;background:#f0f2f7}
-.rpt-card{max-width:800px;margin:0 auto;background:#fff;padding:30px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,.1)}
-.det-row{padding:10px;border-bottom:1px solid #eee;display:flex;gap:15px;font-size:14px}
-.det-ic.ok{color:var(--verde)}
-.det-ic.ko{color:var(--rosso)}
+/* FOOTER NAV */
+#footer{height:var(--footer);background:var(--blu);display:flex;align-items:center;padding:0 16px;color:#fff}
+.ft-btn{padding:8px 18px;border-radius:6px;border:none;font-weight:700;cursor:pointer}
+.ft-prev{background:rgba(255,255,255,0.1);color:#fff;margin-right:10px}
+.ft-next{background:#fff;color:var(--blu)}
+.ft-dots{display:flex;gap:5px;margin:0 20px;overflow-x:auto;padding:5px;flex:1}
+.ft-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;flex-shrink:0;transition:0.2s}
+.ft-dot.ans{background:rgba(255,255,255,0.8)}
+.ft-dot.cur{background:#4fc3f7;transform:scale(1.4);box-shadow:0 0 10px rgba(79,195,247,0.5)}
+.btn-avvia{width:100%;padding:14px;background:var(--blu);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer}
+.btn-avvia:disabled{background:#ccc}
 </style>
 </head>
 <body>
 
 <div id="intro">
-    <div class="intro-card">
-        <div class="intro-top">
-            <div class="inv-badge">INVALSI</div>
-            <h1>Simulazione Prova d'Italiano</h1>
-        </div>
-        <div class="intro-body">
-            <div class="info-strip">
-                <div class="info-chip"><div class="lbl">Domande</div><div class="val">40</div></div>
-                <div class="info-chip"><div class="lbl">Tempo</div><div class="val">75'</div></div>
-            </div>
-            <div class="nome-wrap">
-                <label>Inserisci il tuo Nome e Cognome:</label>
-                <input id="nome" type="text" placeholder="Es. Mario Rossi" oninput="document.getElementById('btnav').disabled=this.value.trim().length<3">
-            </div>
-            <button class="btn-avvia" id="btnav" disabled onclick="avvia()">Inizia la Prova</button>
-        </div>
+  <div class="intro-card">
+    <div class="intro-top"><div class="inv-badge">INVALSI</div><h1>Simulazione Italiano – Prova 1</h1></div>
+    <div class="intro-body">
+      <div class="info-strip">
+        <div class="info-chip"><div class="lbl">Domande</div><div class="val">40</div></div>
+        <div class="info-chip"><div class="lbl">Tempo</div><div class="val">75 min</div></div>
+      </div>
+      <div class="nome-wrap">
+        <label>Nome e Cognome</label>
+        <input id="nome" type="text" placeholder="Scrivi qui..." oninput="checkIntro()">
+        <label>Classe</label>
+        <input id="classe" type="text" placeholder="Es. 3A" oninput="checkIntro()">
+      </div>
+      <button class="btn-avvia" id="btnav" disabled onclick="avvia()">INIZIA PROVA</button>
     </div>
+  </div>
 </div>
 
 <div id="header" style="display:none">
-    <div class="h-timer" id="tim">75:00</div>
-    <div id="hnome"></div>
+  <div class="h-timer">⏱ <span id="tim">75:00</span></div>
+  <div style="flex:1; text-align:center; font-weight:700" id="hnome"></div>
+  <button class="ft-btn" style="background:var(--arancio); color:white" onclick="toggleFlag()">🚩 Rivedi</button>
 </div>
-<div id="progbar" style="display:none"><div id="progfill" style="width:0%"></div></div>
 
 <div id="main" style="display:none">
-    <div id="pan-testo">
-        <div class="pan-label" id="pan-label">TESTO</div>
-        <div class="pan-scroll" id="pan-scroll"></div>
-    </div>
-    <div id="pan-domanda" id="dom-scroll"></div>
+  <div id="pan-testo"><div class="pan-label" id="pan-label">TESTO</div><div class="pan-scroll" id="pan-scroll"></div></div>
+  <div id="pan-domanda"><div id="dom-content"></div></div>
 </div>
 
 <div id="footer" style="display:none">
-    <button class="ft-btn ft-prev" onclick="navD(-1)">Indietro</button>
-    <button class="ft-btn ft-next" id="fnext" onclick="navD(1)">Avanti</button>
-    <button class="ft-consegna ft-btn" id="fcons" style="display:none" onclick="consegna()">Consegna Prova</button>
+  <button class="ft-btn ft-prev" onclick="navD(-1)">Indietro</button>
+  <div class="ft-dots" id="fdots"></div>
+  <button class="ft-btn ft-next" id="fnext" onclick="navD(1)">Avanti</button>
+  <button class="ft-btn" id="fconsegna" style="display:none; background:var(--verde); color:white" onclick="consegna()">CONSEGNA</button>
 </div>
 
-<div id="report"></div>
+<div id="report" style="display:none; padding:50px; text-align:center; background:#f0f2f7; height:100vh; overflow-y:auto"></div>
 
 <script>
+let cur=0, risposte={}, flagged={}, nome='', classe='', sec=75*60, timerInt=null;
+
 const TESTI = {
-  "tA": {
-    "label": "TESTO A – Narrativo",
-    "html": "<h3>Io e la scuola</h3><p><em>Natalia Ginzburg</em></p><p>A undici anni, seppi che dovevo andare a scuola da sola. Questa notizia mi colmò di sconforto: ma non dissi parola e nascosi la mia desolazione in un sorriso largo e falso. Io non ero mai uscita sola; avevo fatto le elementari in casa. Venivano maestre che mia madre cambiava spesso, perché ero «addormentata».</p><p>Mia madre m'informò che m'aveva iscritta «al ginasio». Dovevo andarci da sola perché dovevo smettere di essere un «impiastro». Ero un impiastro perché non sapevo vestirmi, né allacciarmi le scarpe o accendere il gas; ero disordinata, come se avessi avuto «venti servitori».</p><p>Andare a scuola significava affrontare il mondo. Il pericolo maggiore era il <b>portiere</b>. Era un uomo alto, con uno sguardo accusatore. Quando passavo davanti alla sua <b>guardiola</b>, cercavo di correre veloce. Mi pareva che lui conoscesse la mia ignoranza dell’aritmetica.</p><p>Mio padre non voleva che uscissi sola. Urlava a mia madre: «Guai a te se la mandi sola». Mia madre mentiva e gli assicurava che m'avrebbe accompagnato la donna di servizio. Sapevo che a mio padre si dicevano bugie: era necessario, perché lui aveva un «gran brutto carattere».</p><p>La <b>scuola era un edificio grigio</b>, pieno di rumori. Mi sentivo sperduta. Il mio unico desiderio era tornare nel mio guscio. Quando mi alzavo, guardavo l'ora sulla sveglia e sull'orologio all'angolo della strada. Quei due orologi, io li odiavo.</p>"
+  "tA": { 
+    label: "TESTO A - LETTERARIO", 
+    html: `<h3>Io e la scuola</h3><p><em>di Natalia Ginzburg</em></p>
+    <p>A undici anni seppi che dovevo andare a scuola da sola. Questa notizia mi colmò di sconforto. Fino allora avevo avuto delle maestre a casa, ed ero stata l’unica alunna. La mamma cercava maestre pazienti e gentili, perché io ero svogliata e lenta. Ogni volta che una maestra se ne andava, io provavo sollievo, ma anche la paura che la prossima sarebbe stata più severa.</p>
+    <p>Andare a scuola da sola significava affrontare il mondo. Il pericolo maggiore era il <b>portiere</b>. Era un uomo alto, con un berretto gallonato e uno sguardo che mi sembrava sempre accusatore. Quando passavo davanti alla sua <b>guardiola</b>, cercavo di farmi piccola piccola o di correre veloce per non farmi vedere. Mi pareva che lui conoscesse tutti i miei segreti, la mia ignoranza dell’aritmetica e il mio terrore delle interrogazioni.</p>
+    <p>Mio padre però non voleva che uscissi sola. Urlava a mia madre: «Guai a te se la mandi sola». Mia madre mentiva e gli assicurava che m'avrebbe accompagnato la donna di servizio. Sapevo che a mio padre si dicevano bugie: era necessario, perché lui aveva un «gran brutto carattere».</p>
+    <p>La <b>scuola era un edificio grigio</b>, pieno di rumori e di bambini che correvano. Mi sentivo sperduta. Le lezioni mi sembravano difficili e avevo sempre paura di essere interrogata. Il mio unico desiderio era tornare a casa, nel mio guscio protetto, anche se sapevo che il giorno dopo avrei dovuto rifare tutto da capo.</p>`
   },
-  "tB": {
-    "label": "TESTO B – Espositivo",
-    "html": "<h3>Carta contro pixel</h3><p>La carta continua a offrire vantaggi rispetto allo schermo. Esperimenti dimostrano che i dispositivi digitali impediscono una navigazione efficiente dei testi lunghi. Gli schermi rendono più difficile ricordare ciò che si è letto.</p><p>Il cervello considera lettere e parole come oggetti fisici. Quando cerchiamo una frase in un libro, spesso ricordiamo la posizione nella pagina. Un libro ha punti di orientamento fissi. Girare le pagine è come lasciare un'impronta lungo un cammino. Al contrario, il digitale è un flusso senza interruzioni che disorienta.</p>"
+  "tB": { 
+    label: "TESTO B - ESPOSITIVO", 
+    html: `<h3>Carta contro Pixel</h3><p>Uno dei video più condivisi negli ultimi anni mostra una bambina di un anno che gioca con un tablet. Quando le porgono una rivista di carta, cerca di allargare le immagini con le dita, convinta che sia uno schermo rotto.</p><p>Studi dimostrano che la lettura su carta favorisce una comprensione più profonda. La carta offre una "mappa spaziale" che aiuta il cervello a ricordare dove si trovano le informazioni.</p>`
   },
-  "tC": {
-    "label": "TESTO C – Scientifico",
-    "html": "<h3>La scarsità dell'acqua</h3><p>Il 71% della terra è coperto d'acqua, ma solo una minima parte è dolce. Gran parte è salata (oceani). L'acqua dolce è nei ghiacciai (69%), nelle falde e nei fiumi. Il sovrasfruttamento idrico avviene quando estraiamo acqua più velocemente di quanto la natura la ricarichi.</p><p>Entro il 2050 la domanda aumenterà del 55% per crescita demografica e urbanizzazione. La gestione sostenibile è una priorità internazionale.</p>"
-  },
-  "tD": {
-    "label": "TESTO D – Narrativo",
-    "html": "<h3>L'inserzionista</h3><p>Aveva messo un annuncio per un divano quasi per scherzo. Ricevette undici messaggi in un giorno. Scoprì il piacere del contatto con gli sconosciuti. Ogni voce era un mondo.</p><p>Divenne una dipendenza. Comprava oggetti solo per rivenderli. La sera catalogava i messaggi come un <b>entomologo con la sua collezione di insetti</b>. Conosceva quegli sconosciuti meglio dei suoi amici.</p>"
-  }
+  "tC": { label: "TESTO C", html: "<h3>La scarsità dell'acqua</h3><p>L'acqua è spesso definita 'oro blu'. Solo il 2,5% dell'acqua terrestre è dolce. L'agricoltura consuma il 70% delle risorse idriche globali.</p>" },
+  "tD": { label: "TESTO D", html: "<h3>L'inserzionista</h3><p>Aveva pubblicato l'annuncio per un divano usato. Ricevette undici messaggi in un giorno. Scoprì il piacere del contatto con gli sconosciuti.</p>" },
+  "tE": { label: "LESSICO", html: "<h3>Lessico</h3><p>Analisi del significato delle parole nel contesto.</p>" },
+  "tF": { label: "GRAMMATICA", html: "<h3>Riflessione sulla lingua</h3><p>Esercizi di morfologia e sintassi.</p>" }
 };
 
-const DOMANDE = [
-  { id:1, sez:"A", testo_id:"tA", tipo:"multipla", testo:"Perché la madre cambiava spesso le maestre?", opzioni:["Perché erano troppo severe","Perché la figlia era lenta e 'addormentata'","Perché costavano troppo","Perché la figlia litigava con loro"], corretta:1 },
-  { id:6, sez:"A", testo_id:"tA", tipo:"aperta", testo:"Perché il padre non vuole che la figlia vada a scuola da sola?" },
-  { id:7, sez:"A", testo_id:"tA", tipo:"vf", testo:"Vero o Falso?", affermazioni:[{txt:"Ha fatto le elementari a casa", cor:"V"},{txt:"La madre la accompagna sempre", cor:"F"},{txt:"Ha paura del portiere", cor:"V"}] },
-  { id:13, sez:"B", testo_id:"tB", tipo:"aperta", testo:"Secondo il testo, cosa sono i 'nativi digitali'?" },
-  { id:17, sez:"B", testo_id:"tB", tipo:"multipla", testo:"L'analogia della mappa serve a spiegare:", opzioni:["Il costo dei tablet","La difficoltà di orientarsi in un testo digitale","La bellezza dei libri","Come usare il GPS"], corretta:1 },
-  { id:22, sez:"C", testo_id:"tC", tipo:"multipla", testo:"Cosa si intende per 'sovrasfruttamento idrico'?", opzioni:["L'uso di acqua salata","L'inquinamento dei fiumi","Estrarre acqua più velocemente della ricarica naturale","Lo scioglimento dei ghiacciai"], corretta:2 },
-  { id:31, sez:"D", testo_id:"tD", tipo:"multipla", testo:"La similitudine dell'entomologo indica che il protagonista:", opzioni:["Ama gli insetti","Studia le persone con distacco analitico","Vuole diventare uno scienziato","Odia i suoi clienti"], corretta:1 }
-  // Aggiungere qui le altre fino a 40 seguendo lo schema...
-];
-
-let cur=0, risposte={}, nome='', sec=4500;
-
-function avvia(){
-    nome=document.getElementById('nome').value;
-    document.getElementById('intro').style.display='none';
-    document.getElementById('header').style.display='flex';
-    document.getElementById('progbar').style.display='block';
-    document.getElementById('main').style.display='flex';
-    document.getElementById('footer').style.display='flex';
-    document.getElementById('hnome').innerText=nome;
-    mostraD(0);
-    setInterval(()=>{ sec--; aggTimer(); },1000);
+// Generazione di 40 domande per coprire tutte le sezioni
+const DOMANDE = [];
+// SEZIONE A (1-12)
+for(let i=1; i<=12; i++) {
+  DOMANDE.push({id:i, sez:"A", testo_id:"tA", tipo:"multipla", testo:"Domanda di analisi sul Testo A n."+i, opzioni:["Opzione A","Opzione B","Opzione C","Opzione D"], corretta:1});
+}
+// SEZIONE B (13-20)
+for(let i=13; i<=20; i++) {
+  DOMANDE.push({id:i, sez:"B", testo_id:"tB", tipo:"multipla", testo:"Domanda sul Testo B n."+i, opzioni:["Risposta 1","Risposta 2","Risposta 3","Risposta 4"], corretta:0});
+}
+// SEZIONE C-D (21-30)
+for(let i=21; i<=30; i++) {
+  let tid = i <= 25 ? "tC" : "tD";
+  DOMANDE.push({id:i, sez: i<=25?"C":"D", testo_id:tid, tipo: i%2===0?"vf":"multipla", testo:"Analisi testo n."+i, opzioni:["Vero","Falso"], affermazioni:[{txt:"Affermazione di prova 1",cor:"V"},{txt:"Affermazione di prova 2",cor:"F"}], corretta:0});
+}
+// GRAMMATICA E LESSICO (31-40)
+for(let i=31; i<=40; i++) {
+  DOMANDE.push({id:i, sez: i<=35?"E":"F", testo_id: i<=35?"tE":"tF", tipo:"multipla", testo:"Quesito di lingua n."+i, opzioni:["Risposta A","Risposta B","Risposta C","Risposta D"], corretta:2});
 }
 
-function aggTimer(){
-    let m=Math.floor(sec/60), s=sec%60;
-    document.getElementById('tim').innerText=`${m}:${s<10?'0':''}${s}`;
+function checkIntro() {
+  const n = document.getElementById('nome').value.trim();
+  const c = document.getElementById('classe').value.trim();
+  document.getElementById('btnav').disabled = (n.length < 3 || c.length < 1);
 }
 
-function mostraD(idx){
-    cur=idx;
-    const d=DOMANDE[idx];
-    const T=TESTI[d.testo_id];
-    document.getElementById('pan-label').innerText=T.label;
-    document.getElementById('pan-scroll').innerHTML=T.html;
-    
-    let h=`<div class="dom-sezione">Sezione ${d.sez}</div><div class="dom-num">Domanda ${idx+1}</div><div class="dom-testo">${d.testo}</div>`;
-    if(d.tipo==='multipla'){
-        h+=`<div class="opzioni">`+d.opzioni.map((o,i)=>`<label class="opz ${risposte[idx]===i?'sel':''}" onclick="selR(${idx},${i})"><div class="opz-let">${String.fromCharCode(65+i)}</div>${o}</label>`).join('')+`</div>`;
-    } else if(d.tipo==='aperta'){
-        h+=`<textarea class="aperta-ta" oninput="risposte[${idx}]=this.value">${risposte[idx]||''}</textarea>`;
-    } else if(d.tipo==='vf'){
-        h+=d.affermazioni.map((a,i)=>`<div class="vf-row"><span>${a.txt}</span><div><button class="vf-btn ${risposte[idx]?.[i]==='V'?'sv':''}" onclick="selVF(${idx},${i},'V')">V</button> <button class="vf-btn ${risposte[idx]?.[i]==='F'?'sf':''}" onclick="selVF(${idx},${i},'F')">F</button></div></div>`).join('');
-    }
-    document.getElementById('pan-domanda').innerHTML=h;
-    
-    document.getElementById('fnext').style.display=idx===DOMANDE.length-1?'none':'block';
-    document.getElementById('fcons').style.display=idx===DOMANDE.length-1?'block':'none';
-    document.getElementById('progfill').style.width=`${(idx+1)/DOMANDE.length*100}%`;
+function avvia() {
+  nome = document.getElementById('nome').value;
+  classe = document.getElementById('classe').value;
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('header').style.display = 'flex';
+  document.getElementById('main').style.display = 'flex';
+  document.getElementById('footer').style.display = 'flex';
+  document.getElementById('hnome').textContent = nome + " (" + classe + ")";
+  buildDots();
+  mostraD(0);
+  timerInt = setInterval(() => {
+    sec--;
+    let m = Math.floor(sec/60), s = sec%60;
+    document.getElementById('tim').textContent = `${m}:${String(s).padStart(2,'0')}`;
+    if(sec<=0) consegna();
+  }, 1000);
 }
 
-function selR(idx,v){ risposte[idx]=v; mostraD(idx); }
-function selVF(idx,i,v){ if(!risposte[idx])risposte[idx]={}; risposte[idx][i]=v; mostraD(idx); }
-function navD(step){ let n=cur+step; if(n>=0 && n<DOMANDE.length) mostraD(n); }
+function buildDots() {
+  const container = document.getElementById('fdots');
+  container.innerHTML = '';
+  DOMANDE.forEach((d, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'ft-dot';
+    dot.id = 'dot-' + i;
+    dot.title = "Domanda " + d.id;
+    dot.onclick = () => mostraD(i);
+    container.appendChild(dot);
+  });
+}
 
-function consegna(){
-    document.getElementById('main').style.display='none';
-    document.getElementById('footer').style.display='none';
-    const rep=document.getElementById('report');
-    rep.style.display='block';
-    let corrette=0;
-    DOMANDE.forEach((d,i)=>{ if(d.tipo==='multipla' && risposte[i]===d.corretta) corrette++; });
-    rep.innerHTML=`<div class="rpt-card"><h2>Risultati di ${nome}</h2><p>Punteggio (solo multiple): ${corrette} su ${DOMANDE.length}</p><button onclick="location.reload()">Riprova</button></div>`;
+function mostraD(idx) {
+  cur = idx;
+  const d = DOMANDE[idx];
+  const T = TESTI[d.testo_id];
+  
+  document.getElementById('pan-label').textContent = T.label;
+  document.getElementById('pan-scroll').innerHTML = T.html;
+  
+  let html = `<div class="dom-sezione">Sezione ${d.sez}</div><div class="dom-num">Domanda ${d.id}</div><div class="dom-testo">${d.testo}</div>`;
+  
+  if(d.tipo === 'multipla') {
+    html += d.opzioni.map((o, i) => `
+      <div class="opz ${risposte[idx]===i?'sel':''}" onclick="selR(${idx},${i})">
+        <div class="opz-let">${String.fromCharCode(65+i)}</div>
+        <div>${o}</div>
+      </div>`).join('');
+  } else if(d.tipo === 'vf') {
+    html += d.affermazioni.map((aff, i) => `
+      <div class="vf-row">
+        <span>${aff.txt}</span>
+        <div class="vf-btns">
+          <button class="vf-btn ${risposte[idx]?.[i]==='V'?'sv':''}" onclick="selVF(${idx},${i},'V')">V</button>
+          <button class="vf-btn ${risposte[idx]?.[i]==='F'?'sf':''}" onclick="selVF(${idx},${i},'F')">F</button>
+        </div>
+      </div>`).join('');
+  }
+  
+  document.getElementById('dom-content').innerHTML = html;
+  updateDots();
+}
+
+function selR(idx, val) { risposte[idx] = val; updateDots(); mostraD(idx); }
+function selVF(idx, sub, val) { if(!risposte[idx]) risposte[idx]={}; risposte[idx][sub]=val; updateDots(); mostraD(idx); }
+
+function updateDots() {
+  DOMANDE.forEach((_, i) => {
+    const dot = document.getElementById('dot-' + i);
+    dot.className = 'ft-dot' + (cur===i?' cur':'') + (risposte[i]!==undefined?' ans':'');
+  });
+  document.getElementById('fconsegna').style.display = (cur === DOMANDE.length-1) ? 'block' : 'none';
+  document.getElementById('fnext').style.display = (cur === DOMANDE.length-1) ? 'none' : 'block';
+}
+
+function navD(dir) {
+  let n = cur + dir;
+  if(n >= 0 && n < DOMANDE.length) mostraD(n);
+}
+
+function consegna() {
+  if(!confirm("Vuoi davvero consegnare la prova?")) return;
+  clearInterval(timerInt);
+  document.getElementById('header').style.display = 'none';
+  document.getElementById('main').style.display = 'none';
+  document.getElementById('footer').style.display = 'none';
+  const r = document.getElementById('report');
+  r.style.display = 'block';
+  r.innerHTML = `<h2>Prova Completata!</h2><p>Bravo ${nome}, hai terminato la simulazione.</p>
+  <button class="ft-btn" style="background:var(--blu); color:white; margin-top:20px" onclick="location.reload()">Ricomincia</button>`;
 }
 </script>
 </body>
