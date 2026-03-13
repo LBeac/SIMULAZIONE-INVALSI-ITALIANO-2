@@ -3,140 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INVALSI Italiano – Simulazione 40 Domande</title>
+<title>Simulazione Ministeriale INVALSI - Italiano Terza Media</title>
 <style>
-:root{--blu:#1a3a5c;--blu2:#2a5298;--blu3:#e8eef7;--verde:#1e7e34;--rosso:#c0392b;--arancio:#e67e22;--grigio:#f5f6f7;--bordo:#d0d5de;--testo:#1a1a2e;--header:52px;--footer:56px}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#e9ecef;color:var(--testo);height:100vh;overflow:hidden;display:flex;flex-direction:column}
-#intro{position:fixed;inset:0;background:linear-gradient(135deg,#1a3a5c 0%,#2a5298 100%);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
-.intro-card{background:#fff;border-radius:12px;max-width:600px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}
-.intro-top{background:var(--blu);color:#fff;padding:20px;text-align:center}
-.intro-body{padding:25px}
-.nome-wrap label{display:block;font-size:12px;font-weight:700;margin:10px 0 5px}
-.nome-wrap input{width:100%;padding:10px;border:2px solid var(--bordo);border-radius:6px;margin-bottom:10px}
-#header{height:var(--header);background:var(--blu);color:#fff;display:flex;align-items:center;padding:0 16px;justify-content:space-between}
-#main{flex:1;display:flex;overflow:hidden}
-#pan-testo{width:45%;border-right:3px solid var(--bordo);background:#fff;display:flex;flex-direction:column}
-.pan-label{background:var(--blu);color:#fff;padding:8px 15px;font-size:12px;font-weight:700}
-.pan-scroll{flex:1;overflow-y:auto;padding:25px;line-height:1.7;font-size:16px}
-#pan-domanda{flex:1;background:var(--grigio);overflow-y:auto;padding:25px}
-.opz{display:flex;align-items:center;gap:10px;padding:12px;border:2px solid var(--bordo);border-radius:8px;background:#fff;cursor:pointer;margin-bottom:8px}
-.opz.sel{border-color:var(--blu2);background:#e8f0fb}
-.opz-let{width:25px;height:25px;border-radius:50%;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;font-weight:800}
-.opz.sel .opz-let{background:var(--blu2);color:#fff;border-color:var(--blu2)}
-.vf-row{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#fff;border:1px solid var(--bordo);border-radius:8px;margin-bottom:5px}
-.aperta-ta{width:100%;height:100px;padding:10px;border-radius:8px;border:2px solid var(--bordo)}
-#footer{height:var(--footer);background:var(--blu);display:flex;align-items:center;padding:0 15px}
-.ft-dots{display:flex;gap:5px;flex:1;overflow-x:auto;padding:10px}
-.ft-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;flex-shrink:0}
-.ft-dot.ans{background:#fff}
-.ft-dot.cur{background:#4fc3f7;transform:scale(1.3)}
-.ft-btn{padding:8px 15px;border-radius:5px;border:none;font-weight:700;cursor:pointer}
+    :root {
+        --invalsi-blue: #1a3a5c;
+        --invalsi-light-blue: #e8eef7;
+        --invalsi-accent: #4fc3f7;
+        --border-color: #d0d5de;
+        --header-height: 60px;
+        --footer-height: 70px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; height: 100vh; display: flex; flex-direction: column; overflow: hidden; background: #f4f7f9; }
+
+    /* Intro Screen */
+    #setup-screen { position: fixed; inset: 0; background: var(--invalsi-blue); z-index: 1000; display: flex; align-items: center; justify-content: center; }
+    .setup-card { background: white; padding: 40px; border-radius: 8px; width: 100%; max-width: 500px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center; }
+    .input-group { margin: 15px 0; text-align: left; }
+    .input-group label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #666; }
+    .input-group input { width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 4px; }
+    .start-btn { width: 100%; padding: 15px; background: #2ecc71; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
+
+    /* Layout */
+    header { height: var(--header-height); background: var(--invalsi-blue); color: white; display: flex; align-items: center; padding: 0 20px; justify-content: space-between; }
+    main { flex: 1; display: flex; overflow: hidden; }
+    #text-panel { width: 45%; background: white; border-right: 4px solid var(--border-color); display: flex; flex-direction: column; }
+    .text-content { flex: 1; overflow-y: auto; padding: 30px; line-height: 1.8; font-size: 17px; font-family: 'Georgia', serif; }
+    #question-panel { flex: 1; background: #f9f9f9; overflow-y: auto; padding: 40px; }
+    
+    /* Questions */
+    .q-num { background: var(--invalsi-blue); color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px; }
+    .option { background: white; border: 2px solid var(--border-color); border-radius: 8px; padding: 15px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; }
+    .option.selected { border-color: var(--invalsi-blue); background: var(--invalsi-light-blue); }
+    .option-let { width: 30px; height: 30px; border: 2px solid #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold; }
+    .text-area { width: 100%; height: 150px; padding: 15px; border-radius: 8px; border: 2px solid var(--border-color); }
+
+    /* Navigation */
+    footer { height: var(--footer-height); background: #eee; border-top: 2px solid var(--border-color); display: flex; align-items: center; padding: 0 20px; }
+    .nav-dots { flex: 1; display: flex; gap: 6px; overflow-x: auto; padding: 10px; }
+    .dot { min-width: 14px; height: 14px; background: #ccc; border-radius: 50%; cursor: pointer; }
+    .dot.active { background: var(--invalsi-accent); transform: scale(1.2); }
+    .dot.answered { background: var(--invalsi-blue); }
+    
+    #report-screen { position: fixed; inset: 0; background: white; z-index: 2000; display: none; flex-direction: column; align-items: center; justify-content: center; }
 </style>
 </head>
 <body>
 
-<div id="intro">
-  <div class="intro-card">
-    <div class="intro-top"><h2>Simulazione INVALSI 2026</h2></div>
-    <div class="intro-body">
-      <div class="nome-wrap">
-        <label>NOME E COGNOME</label><input id="nome" type="text" placeholder="Mario Rossi">
-        <label>CLASSE</label><input id="classe" type="text" placeholder="3A">
-      </div>
-      <button class="ft-btn" style="width:100%; background:var(--blu); color:white; margin-top:15px" onclick="avvia()">INIZIA PROVA</button>
+<div id="setup-screen">
+    <div class="setup-card">
+        <h1>Simulazione INVALSI Italiano</h1>
+        <div class="input-group"><label>NOME E COGNOME</label><input type="text" id="s-name"></div>
+        <div class="input-group"><label>CLASSE</label><input type="text" id="s-class"></div>
+        <button class="start-btn" onclick="startExam()">INIZIA PROVA</button>
     </div>
-  </div>
 </div>
 
-<div id="header" style="display:none">
-  <div id="tim">75:00</div>
-  <div id="hnome" style="font-weight:bold"></div>
-  <button class="ft-btn" style="background:var(--arancio); color:white" onclick="flag()">Rivedi 🚩</button>
+<div id="report-screen">
+    <h1>Prova Terminata</h1>
+    <p id="rep-msg"></p>
+    <button class="start-btn" style="width:auto; padding:15px 40px; margin-top:20px" onclick="downloadTXT()">SCARICA REPORT (.txt)</button>
 </div>
 
-<div id="main" style="display:none">
-  <div id="pan-testo"><div class="pan-label" id="pan-label">TESTO</div><div class="pan-scroll" id="pan-scroll"></div></div>
-  <div id="pan-domanda" id="dom-content"></div>
-</div>
+<header style="display:none">
+    <div style="font-size:20px; font-weight:bold" id="timer">75:00</div>
+    <div id="student-info"></div>
+    <div class="q-num" id="q-counter">Quesito 1 di 40</div>
+</header>
 
-<div id="footer" style="display:none">
-  <button class="ft-btn" style="background:#444; color:white" onclick="nav(-1)">Indietro</button>
-  <div class="ft-dots" id="fdots"></div>
-  <button class="ft-btn" id="fnext" style="background:white" onclick="nav(1)">Avanti</button>
-  <button class="ft-btn" id="fcons" style="background:var(--verde); color:white; display:none" onclick="consegna()">Consegna</button>
-</div>
+<main style="display:none">
+    <div id="text-panel"><div class="text-content" id="t-body"></div></div>
+    <div id="question-panel"><div id="q-body"></div></div>
+</main>
+
+<footer style="display:none">
+    <button onclick="changeQ(-1)" style="padding:10px 20px">INDIETRO</button>
+    <div class="nav-dots" id="dots"></div>
+    <button onclick="changeQ(1)" id="btn-next" style="padding:10px 20px; background:var(--invalsi-blue); color:white">AVANTI</button>
+    <button onclick="finish()" id="btn-fin" style="display:none; padding:10px 20px; background:#2ecc71; color:white">CONSEGNA</button>
+</footer>
 
 <script>
-let cur=0, risposte={}, nome='', classe='', sec=75*60;
+const data = {
+    texts: {
+        A: { title: "Testo A - Natalia Ginzburg", content: "<h3>Io e la scuola</h3><p>A undici anni seppi che dovevo andare a scuola da sola. Questa notizia mi colmò di sconforto... Io non ero mai uscita sola; avevo fatto le elementari in casa. Venivano maestre che mia madre cambiava spesso perché ero 'addormentata'.</p><p>Mia madre m'informò che m'aveva iscritta 'al ginasio'. Dovevo andarci da sola perché dovevo smettere di essere un 'impiastro'. Ero un impiastro perché non sapevo vestirmi, né allacciarmi le scarpe o accendere il gas.</p><p>Il pericolo maggiore era il <b>portiere</b>. Era un uomo alto, con uno sguardo accusatore. Quando passavo davanti alla sua <b>guardiola</b>, cercavo di correre veloce. La scuola era un <b>edificio grigio</b>, pieno di rumori.</p>" },
+        B: { title: "Testo B - Carta vs Pixel", content: "<h3>Carta contro Pixel</h3><p>La lettura su carta favorisce una comprensione più profonda. La carta offre una 'mappa spaziale' che aiuta il cervello a ricordare la posizione delle informazioni. Al contrario, il digitale disorienta.</p>" },
+        C: { title: "Testo C - L'acqua", content: "<h3>La scarsità dell'acqua</h3><p>L'acqua dolce è solo il 2,5% del totale mondiale. L'agricoltura ne consuma il 70%. Entro il 2050 la domanda aumenterà del 55% a causa dell'urbanizzazione.</p>" },
+        D: { title: "Testo D - L'inserzionista", content: "<h3>L'inserzionista</h3><p>Aveva messo un annuncio per un divano quasi per scherzo. Ricevette undici messaggi. Catalogava i messaggi come un <b>entomologo</b> con la sua collezione di insetti.</p>" },
+        G: { title: "Riflessione sulla lingua", content: "<h3>Grammatica e Lessico</h3><p>Analisi grammaticale, logica e del periodo. Uso dei connettivi e dei tempi verbali.</p>" }
+    },
+    questions: [
+        // TESTO A (1-10)
+        { t: "A", q: "Perché la protagonista definisce 'falso' il suo sorriso iniziale?", type: "multiple", o: ["Perché voleva ingannare la madre", "Per nascondere un sentimento che considerava vile", "Perché era felice di andare a scuola", "Perché non sapeva sorridere bene"], c: 1 },
+        { t: "A", q: "Cosa intende la madre con il termine 'addormentata'?", type: "multiple", o: ["Che la figlia soffriva di insonnia", "Che la figlia era pigra e lenta nell'apprendimento", "Che la figlia sognava ad occhi aperti", "Che la figlia era sempre stanca"], c: 1 },
+        { t: "A", q: "Perché la protagonista era considerata un 'impiastro'?", type: "open" },
+        { t: "A", q: "Qual era il timore principale legato al portiere?", type: "multiple", o: ["Che le impedisse di uscire", "Che conoscesse i suoi segreti e la sua ignoranza", "Che parlasse con suo padre", "Che fosse un uomo cattivo"], c: 1 },
+        { t: "A", q: "Quale metafora usa l'autrice per descrivere la casa?", o: ["Un nido", "Un guscio protetto", "Una prigione", "Un campo di battaglia"], c: 1, type: "multiple" },
+        { t: "A", q: "Descrivi l'aspetto fisico della scuola secondo il testo.", type: "open" },
+        { t: "A", q: "Perché la madre mentiva al padre sull'accompagnamento a scuola?", type: "multiple", o: ["Per risparmiare", "Per difendere la figlia dai suoi divieti", "Perché era smemorata", "Per cattiveria"], c: 1 },
+        { t: "A", q: "Chi era l'ultima maestra della protagonista?", o: ["Una signora anziana", "Una giovane con un cappello di feltro", "Una zia", "Una suora"], c: 1, type: "multiple" },
+        { t: "A", q: "Cosa sentiva la bambina invece di 'Te Deum'?", o: ["Tedem", "Tandem", "Tede", "Dium"], c: 0, type: "multiple" },
+        { t: "A", q: "Quale oggetto l'autrice dice di 'odiare' alla fine del testo?", o: ["I libri", "Gli orologi", "Le scarpe", "Il gas"], c: 1, type: "multiple" },
 
-const TESTI = {
-  "tA": { label:"TESTO A", html:`<h3>Io e la scuola</h3><p><em>di Natalia Ginzburg</em></p><p>A undici anni seppi che dovevo andare a scuola da sola. Questa notizia mi colmò di sconforto. Fino allora avevo avuto delle maestre a casa... La mamma cercava maestre pazienti e gentili perché io ero svogliata e lenta.</p><p>Andare a scuola da sola significava affrontare il mondo. Il pericolo maggiore era il <b>portiere</b>. Era un uomo alto, con uno sguardo accusatore. Quando passavo davanti alla sua <b>guardiola</b>, cercavo di farmi piccola piccola. Mi pareva che lui conoscesse tutti i miei segreti.</p><p>La scuola era un <b>edificio grigio</b>, pieno di rumori. Il mio unico desiderio era tornare a casa, nel mio guscio protetto.</p>` },
-  "tB": { label:"TESTO B", html:`<h3>Carta contro Pixel</h3><p>La lettura su carta favorisce una comprensione più profonda. La carta offre una "mappa spaziale" che aiuta il cervello a ricordare la posizione delle informazioni. Al contrario, lo scorrimento digitale disorienta il lettore.</p>` },
-  "tC": { label:"TESTO C", html:`<h3>L'oro blu</h3><p>L'acqua dolce è solo il 2,5% del totale mondiale. L'agricoltura consuma il 70% dell'acqua dolce. Entro il 2050 la domanda aumenterà del 55%.</p>` },
-  "tD": { label:"TESTO D", html:`<h3>L'inserzionista</h3><p>Aveva messo un annuncio per un divano quasi per scherzo. Scoprì il piacere del contatto con gli sconosciuti. Catalogava i messaggi come un <b>entomologo</b> con la sua collezione di insetti.</p>` },
-  "tE": { label:"LESSICO", html:`<h3>Lessico</h3><p>Analisi semantica e sinonimi.</p>` },
-  "tF": { label:"GRAMMATICA", html:`<h3>Riflessione sulla lingua</h3><p>Morfosintassi e punteggiatura.</p>` }
+        // TESTO B (11-20)
+        { t: "B", q: "Cos'è la 'mappa spaziale' citata nel testo?", type: "open" },
+        { t: "B", q: "Secondo il testo, il digitale cosa impedisce?", o: ["La velocità", "La navigazione efficiente di testi lunghi", "La visione delle immagini", "Il risparmio"], c: 1, type: "multiple" },
+        { t: "B", q: "I 'nativi digitali' chi sono?", type: "multiple", o: ["Gli esperti di computer", "Le generazioni nate con la tecnologia", "I costruttori di tablet", "Chi odia la carta"], c: 1 },
+        { t: "B", q: "Quale analogia viene usata per il digitale?", o: ["Una foresta", "Una mappa senza quartieri", "Un deserto", "Un mare"], c: 1, type: "multiple" },
+        { t: "B", q: "Perché il cervello considera le parole come oggetti fisici?", type: "open" },
+        { t: "B", q: "La rivista per la bambina del video cos'era?", o: ["Un gioco", "Un tablet rotto", "Un foglio inutile", "Un regalo"], c: 1, type: "multiple" },
+        { t: "B", q: "Cosa facilitano gli angoli della pagina?", o: ["La lettura", "L'orientamento mnemonico", "Il design", "La stampa"], c: 1, type: "multiple" },
+        { t: "B", q: "Il termine 'Pixel' nel titolo a cosa si riferisce?", o: ["Alla carta", "Alla lettura digitale", "Ai colori", "Alla vista"], c: 1, type: "multiple" },
+        { t: "B", q: "Quale supporto favorisce la memoria a lungo termine?", o: ["Schermo", "Carta", "Audio", "Video"], c: 1, type: "multiple" },
+        { t: "B", q: "Cosa succede quando si scorre (scroll) un testo?", o: ["Si impara meglio", "Si perde il senso del luogo nel testo", "Si fa prima", "Si risparmia carta"], c: 1, type: "multiple" },
+
+        // TESTO C e D (21-30)
+        { t: "C", q: "Qual è la percentuale di acqua dolce accessibile?", o: ["71%", "2,5%", "0,5%", "10%"], c: 1, type: "multiple" },
+        { t: "C", q: "Quale settore consuma più acqua?", o: ["Industria", "Agricoltura", "Domestico", "Turismo"], c: 1, type: "multiple" },
+        { t: "C", q: "Cos'è il sovrasfruttamento idrico?", type: "open" },
+        { t: "C", q: "Di quanto aumenterà la domanda idrica nel 2050?", o: ["10%", "55%", "100%", "25%"], c: 1, type: "multiple" },
+        { t: "C", q: "Perché l'acqua è definita 'oro blu'?", type: "open" },
+        { t: "D", q: "Cosa vendette per primo l'inserzionista?", o: ["Una lampada", "Un divano", "Una bici", "Un libro"], c: 1, type: "multiple" },
+        { t: "D", q: "La metafora dell'entomologo cosa suggerisce?", o: ["Amore per la natura", "Osservazione distaccata e meticolosa", "Crudeltà", "Pazzia"], c: 1, type: "multiple" },
+        { t: "D", q: "Perché l'uomo continua a mettere annunci?", type: "open" },
+        { t: "D", q: "Quanti messaggi ricevette il primo giorno?", o: ["1", "11", "100", "nessuno"], c: 1, type: "multiple" },
+        { t: "D", q: "Cosa scopre l'uomo attraverso gli annunci?", o: ["Il denaro", "Il piacere del contatto con gli sconosciuti", "La fatica", "La solitudine"], c: 1, type: "multiple" },
+
+        // GRAMMATICA (31-40)
+        { t: "G", q: "Qual è il sinonimo di 'vilmente'?", o: ["Coraggiosamente", "Codardamente", "Velocemente", "Inutilmente"], c: 1, type: "multiple" },
+        { t: "G", q: "Individua il predicato verbale nella frase: 'La mamma mentiva'.", type: "open" },
+        { t: "G", q: "Quale di queste è una frase passiva?", o: ["Io mangio", "La mela è mangiata", "Io ho mangiato", "Io mangerò"], c: 1, type: "multiple" },
+        { t: "G", q: "Il tempo verbale 'ebbi saputo' è:", o: ["Passato remoto", "Trapassato remoto", "Futuro anteriore", "Imperfetto"], c: 1, type: "multiple" },
+        { t: "G", q: "Analisi logica: 'A undici anni' è un complemento di:", o: ["Tempo", "Luogo", "Modo", "Età (tempo determinato)"], c: 3, type: "multiple" },
+        { t: "G", q: "Trasforma al plurale: 'L'impiastro'.", type: "open" },
+        { t: "G", q: "Qual è il contrario di 'sconforto'?", o: ["Tristezza", "Fiducia/Sollievo", "Noia", "Paura"], c: 1, type: "multiple" },
+        { t: "G", q: "Nella frase 'seppi che dovevo andare', la subordinata è:", o: ["Relativa", "Oggettiva", "Finale", "Temporale"], c: 1, type: "multiple" },
+        { t: "G", q: "Indica il pronome relativo: 'La maestra che mi svegliasse'.", type: "open" },
+        { t: "G", q: "Quale punteggiatura manca: 'Non sapevo vestirmi né allacciarmi le scarpe'?", o: ["La virgola", "Il punto", "Nulla", "Il punto e virgola"], c: 2, type: "multiple" }
+    ]
 };
 
-// QUI CI SONO TUTTE LE 40 DOMANDE REALI
-const DOMANDE = [
-  {t:"tA", q:"Perché la madre cercava maestre gentili?", o:["L'autrice era lenta","Era povera","Era cattiva","Era stanca"], c:0},
-  {t:"tA", q:"Cosa provava l'autrice quando una maestra se ne andava?", o:["Tristezza","Sollievo e paura","GIOIA","Rabbia"], c:1},
-  {t:"tA", q:"Il portiere viene descritto come:", o:["Basso","Gentile","Accusatore","Allegro"], c:2},
-  {t:"tA", q:"Cosa faceva l'autrice davanti alla guardiola?", o:["Salutava","Correva veloce","Cantava","Piangeva"], c:1},
-  {t:"tA", q:"Spiega perché l'autrice definisce la casa un 'guscio'.", tipo:"aperta"},
-  {t:"tA", q:"Come viene descritta la scuola?", o:["Colorata","Silenziosa","Grigia e rumorosa","Nuova"], c:2},
-  {t:"tA", q:"Qual era il segreto che il portiere sembrava conoscere?", o:["L'età","L'ignoranza in aritmetica","Il nome","L'indirizzo"], c:1},
-  {t:"tA", q:"A che età iniziò ad andare a scuola sola?", o:["6 anni","11 anni","14 anni","18 anni"], c:1},
-  {t:"tB", q:"Qual è il vantaggio della carta?", o:["Costa meno","Mappa spaziale","È leggera","È colorata"], c:1},
-  {t:"tB", q:"Cosa si intende per 'nativi digitali'?", tipo:"aperta"},
-  {t:"tB", q:"Lo scorrimento digitale secondo il testo:", o:["Aiuta","Disorienta","È veloce","È bello"], c:1},
-  {t:"tC", q:"Quanta acqua sulla terra è dolce?", o:["50%","2,5%","70%","10%"], c:1},
-  {t:"tC", q:"Quale settore consuma più acqua?", o:["Industria","Agricoltura","Domestico","Turismo"], c:1},
-  {t:"tD", q:"La metafora dell'entomologo indica:", o:["Amore per insetti","Studio distaccato","Pazzia","Noia"], c:1},
-  {t:"tD", q:"Cosa vendette per primo?", o:["Auto","Divano","Libro","Radio"], c:1}
-];
-// Riempimento automatico per arrivare a 40 (sostituisci con domande reali se le hai)
-for(let i=16; i<=40; i++) {
-    DOMANDE.push({t: i<30?"tE":"tF", q:"Quesito n."+i+" di lingua/grammatica", o:["Opzione A","Opzione B","Opzione C","Opzione D"], c:0});
-}
+let cur = 0, ans = {}, info = {}, sec = 75*60;
 
-function avvia() {
-    nome = document.getElementById('nome').value;
-    classe = document.getElementById('classe').value;
-    if(!nome || !classe) return alert("Inserisci nome e classe!");
-    document.getElementById('intro').style.display='none';
-    document.getElementById('header').style.display='flex';
-    document.getElementById('main').style.display='flex';
-    document.getElementById('footer').style.display='flex';
-    document.getElementById('hnome').innerText = nome + " (" + classe + ")";
-    buildDots(); render();
-    setInterval(() => { sec--; let m=Math.floor(sec/60), s=sec%60; document.getElementById('tim').innerText=m+":"+(s<10?'0':'')+s; }, 1000);
+function startExam() {
+    info.n = document.getElementById('s-name').value;
+    info.c = document.getElementById('s-class').value;
+    if(!info.n || !info.c) return alert("Dati mancanti!");
+    document.getElementById('setup-screen').style.display = 'none';
+    document.querySelectorAll('header, main, footer').forEach(e => e.style.display = 'flex');
+    document.getElementById('student-info').innerText = `${info.n} - ${info.c}`;
+    buildDots(); render(); startTimer();
 }
 
 function buildDots() {
-    const f = document.getElementById('fdots'); f.innerHTML='';
-    DOMANDE.forEach((_,i)=>{ let d=document.createElement('div'); d.className='ft-dot'; d.id='dot'+i; d.onclick=()=>navTo(i); f.appendChild(d); });
+    const d = document.getElementById('dots'); d.innerHTML = '';
+    data.questions.forEach((_, i) => {
+        let span = document.createElement('span'); span.className = 'dot'; span.id = 'dot-'+i;
+        span.onclick = () => { cur = i; render(); }; d.appendChild(span);
+    });
 }
 
 function render() {
-    const d = DOMANDE[cur]; const T = TESTI[d.t];
-    document.getElementById('pan-label').innerText = T.label;
-    document.getElementById('pan-scroll').innerHTML = T.html;
-    let h = `<h3>Domanda ${cur+1}</h3><p style="margin:15px 0">${d.q}</p>`;
-    if(d.tipo==='aperta') h+=`<textarea class="aperta-ta" oninput="risp('${cur}',this.value)">${risposte[cur]||''}</textarea>`;
-    else h+=d.o.map((o,i)=>`<div class="opz ${risposte[cur]===i?'sel':''}" onclick="risp('${cur}',${i})"><div class="opz-let">${String.fromCharCode(65+i)}</div>${o}</div>`).join('');
-    document.getElementById('pan-domanda').innerHTML = h;
-    DOMANDE.forEach((_,i)=>document.getElementById('dot'+i).className='ft-dot'+(i===cur?' cur':'')+(risposte[i]!==undefined?' ans':''));
-    document.getElementById('fnext').style.display = cur===DOMANDE.length-1?'none':'block';
-    document.getElementById('fcons').style.display = cur===DOMANDE.length-1?'block':'none';
+    const q = data.questions[cur]; const t = data.texts[q.t];
+    document.getElementById('t-body').innerHTML = t.content;
+    document.getElementById('q-counter').innerText = `Quesito ${cur+1} di 40`;
+    let h = `<div class="question-text"><b>${q.q}</b></div>`;
+    if(q.type === 'multiple') {
+        h += q.o.map((o, i) => `<div class="option ${ans[cur]===i?'selected':''}" onclick="sel(${i})"><div class="option-let">${String.fromCharCode(65+i)}</div>${o}</div>`).join('');
+    } else {
+        h += `<textarea class="text-area" oninput="ans[${cur}]=this.value" placeholder="Scrivi qui...">${ans[cur]||''}</textarea>`;
+    }
+    document.getElementById('q-body').innerHTML = h;
+    document.querySelectorAll('.dot').forEach((d, i) => d.className = `dot ${i===cur?'active':''} ${ans[i]!==undefined?'answered':''}`);
+    document.getElementById('btn-next').style.display = cur === 39 ? 'none' : 'block';
+    document.getElementById('btn-fin').style.display = cur === 39 ? 'block' : 'none';
 }
 
-function risp(i,v){ risposte[i]=v; render(); }
-function nav(s){ let n=cur+s; if(n>=0&&n<DOMANDE.length) {cur=n; render();} }
-function navTo(i){ cur=i; render(); }
-function consegna(){ if(confirm("Consegnare?")) alert("Prova terminata! Controlla i risultati con il docente."); }
+function sel(i) { ans[cur] = i; render(); }
+function changeQ(v) { let next = cur + v; if(next >= 0 && next < 40) { cur = next; render(); } }
+
+function startTimer() {
+    setInterval(() => {
+        sec--; let m = Math.floor(sec/60), s = sec%60;
+        document.getElementById('timer').innerText = `${m}:${s<10?'0':''}${s}`;
+        if(sec <= 0) finish();
+    }, 1000);
+}
+
+function finish() {
+    document.getElementById('report-screen').style.display = 'flex';
+    document.getElementById('rep-msg').innerText = `Studente: ${info.n}\nRisposte date: ${Object.keys(ans).length} su 40`;
+}
+
+function downloadTXT() {
+    let out = `REPORT INVALSI - ${info.n} (${info.c})\n\n`;
+    data.questions.forEach((q, i) => {
+        let val = ans[i];
+        let r = q.type === 'multiple' ? (val !== undefined ? String.fromCharCode(65+val) : "MANCANTE") : (val || "MANCANTE");
+        out += `${i+1}. ${q.q}\nRISPOSTA: ${r}\n\n`;
+    });
+    const blob = new Blob([out], {type: 'text/plain'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = `Invalsi_${info.n.replace(/\s/g,'_')}.txt`; a.click();
+}
 </script>
 </body>
 </html>
