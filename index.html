@@ -97,16 +97,15 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#e9ecef;color:var(--test
 let cur=0, risposte={}, flagged={}, nome='', classe='', sec=75*60, timerInt=null;
 
 const TESTI = {
-  "tA": { label: "TESTO A", html: "<h3>Io e la scuola</h3><p>Natalia Ginzburg...</p><p>A undici anni seppi che dovevo andare a scuola da sola. Questa notizia mi colmò di sconforto...</p>" },
-  "tB": { label: "TESTO B", html: "<h3>Carta contro Pixel</h3><p>Uno dei video più condivisi negli ultimi anni mostra una bambina di un anno che gioca con un tablet...</p>" },
-  "tC": { label: "TESTO C", html: "<h3>La scarsità dell'acqua</h3><p>L'acqua è indispensabile per la vita: senza di essa nessun organismo vivente potrebbe sopravvivere...</p>" },
-  "tD": { label: "TESTO D", html: "<h3>L'inserzionista</h3><p>Aveva pubblicato il primo annuncio quasi per scherzo. Si trattava di un vecchio divano di cui voleva liberarsi...</p>" },
-  "tE": { label: "LESSICO", html: "<h3>Lessico</h3><p>Analisi del significato delle parole nel contesto.</p>" },
-  "tF": { label: "GRAMMATICA", html: "<h3>Riflessione sulla lingua</h3><p>Quesiti di morfologia, sintassi e ortografia.</p>" }
+  "tA": { label: "TESTO A - LETTERARIO", html: "<h3>Io e la scuola</h3><p>Natalia Ginzburg...</p><p>A undici anni seppi che dovevo andare a scuola da sola. Questa notizia mi colmò di sconforto. Fino allora avevo avuto delle maestre a casa...</p><p>La mamma cercava maestre pazienti e gentili. Ogni volta che una maestra se ne andava, io provavo sollievo...</p>" },
+  "tB": { label: "TESTO B - ESPOSITIVO", html: "<h3>Carta contro Pixel</h3><p>Uno dei video più condivisi mostra una bambina di un anno che gioca con un tablet. Quando le porgono una rivista di carta, cerca di allargare le immagini con le dita...</p><p>La lettura su carta attiva processi mentali diversi rispetto a quella su schermo...</p>" },
+  "tC": { label: "TESTO C - ESPOSITIVO", html: "<h3>La scarsità dell'acqua</h3><p>L'acqua è indispensabile per la vita. Senza di essa nessun organismo sopravviverebbe. Sebbene la terra sia coperta d'acqua, solo una piccola parte è dolce e potabile...</p>" },
+  "tD": { label: "TESTO D - NARRATIVO", html: "<h3>L'inserzionista</h3><p>Aveva pubblicato il primo annuncio quasi per scherzo. Si trattava di un vecchio divano di cui voleva liberarsi. In poche ore ricevette decine di chiamate...</p>" },
+  "tE": { label: "SEZIONE LESSICO", html: "<h3>Lessico</h3><p>Queste domande testano la tua conoscenza del vocabolario italiano e del significato delle parole nel contesto.</p>" },
+  "tF": { label: "SEZIONE GRAMMATICA", html: "<h3>Riflessione sulla lingua</h3><p>Domande di morfologia, sintassi, punteggiatura e ortografia.</p>" }
 };
 
 const DOMANDE = [
-    // SEZIONE A
     {id:1, sez:"A", testo_id:"tA", tipo:"multipla", testo:"La madre cambiava spesso le maestre perché la figlia", opzioni:["aveva un carattere difficile","era svogliata e lenta","mostrava ostilità","era troppo vivace"], corretta:1},
     {id:2, sez:"A", testo_id:"tA", tipo:"multipla", testo:"L'espressione 'colmare di sconforto' significa che l'autrice era", opzioni:["molto triste","molto arrabbiata","molto sorpresa","molto preoccupata"], corretta:0},
     {id:3, sez:"A", testo_id:"tA", tipo:"multipla", testo:"Perché andare a scuola da sola era un problema?", opzioni:["Aveva paura dei cani","Non conosceva la strada","Si sentiva abbandonata","Era molto pigra"], corretta:2},
@@ -119,7 +118,6 @@ const DOMANDE = [
     {id:10, sez:"A", testo_id:"tA", tipo:"multipla", testo:"La parola 'sconforto' è un", opzioni:["nome","verbo","aggettivo","avverbio"], corretta:0},
     {id:11, sez:"A", testo_id:"tA", tipo:"multipla", testo:"L'autrice da grande è diventata una", opzioni:["maestra","scrittrice","portinaia","dottoressa"], corretta:1},
     {id:12, sez:"A", testo_id:"tA", tipo:"aperta", testo:"Perché la madre cercava maestre 'pazienti'?"},
-    // SEZIONE B
     {id:13, sez:"B", testo_id:"tB", tipo:"multipla", testo:"I 'nativi digitali' sono", opzioni:["persone nate dopo il 2000","esperti di computer","chi è nato con la tecnologia","chi vive in città digitali"], corretta:2},
     {id:14, sez:"B", testo_id:"tB", tipo:"multipla", testo:"Leggere su carta rispetto al tablet è", opzioni:["più faticoso","meno efficace","più profondo","uguale"], corretta:2},
     {id:15, sez:"B", testo_id:"tB", tipo:"aperta", testo:"Qual è il rischio principale dei pixel secondo il testo?"},
@@ -128,7 +126,6 @@ const DOMANDE = [
     {id:18, sez:"B", testo_id:"tB", tipo:"aperta", testo:"Perché la bambina del video scambia la rivista per un tablet rotto?"},
     {id:19, sez:"B", testo_id:"tB", tipo:"multipla", testo:"L'autore del testo B è", opzioni:["un poeta","uno scienziato/giornalista","un programmatore","un bambino"], corretta:1},
     {id:20, sez:"B", testo_id:"tB", tipo:"aperta", testo:"Riassumi la tesi principale del testo B."},
-    // SEZIONE C
     {id:21, sez:"C", testo_id:"tC", tipo: "multipla", testo: "Perché l'acqua dolce è scarsa?", opzioni: ["È inquinata", "È quasi tutta salata", "I fiumi sono secchi", "Piove poco"], corretta: 1},
     {id:22, sez:"C", testo_id:"tC", tipo: "multipla", testo: "Il settore che consuma più acqua è", opzioni: ["L'industria", "L'uso domestico", "L'agricoltura", "Il turismo"], corretta: 2},
     {id:23, sez:"C", testo_id:"tC", tipo: "aperta", testo: "Cosa si intende per 'oro blu'?"},
@@ -136,19 +133,16 @@ const DOMANDE = [
     {id:25, sez:"C", testo_id:"tC", tipo: "multipla", testo: "Un modo per risparmiare acqua è", opzioni: ["Fare bagni lunghi", "Usare la lavatrice vuota", "Riparare i rubinetti", "Innaffiare a mezzogiorno"], corretta: 2},
     {id:26, sez:"C", testo_id:"tC", tipo: "aperta", testo: "Perché l'acqua è definita indispensabile?"},
     {id:27, sez:"C", testo_id:"tC", tipo: "multipla", testo: "Il testo C ha uno scopo", opzioni: ["Informativo", "Narrativo", "Poetico", "Persuasivo"], corretta: 0},
-    // SEZIONE D
     {id:28, sez:"D", testo_id:"tD", tipo: "multipla", testo: "L'inserzionista vende oggetti per", opzioni: ["Arricchirsi", "Gioco/Passatempo", "Necessità", "Mandarli in discarica"], corretta: 1},
     {id:29, sez:"D", testo_id:"tD", tipo: "aperta", testo: "Cosa prova il protagonista quando vende il divano?"},
     {id:30, sez:"D", testo_id:"tD", tipo: "vf", testo: "Vero o Falso?", affermazioni:[{txt:"Vende un vecchio divano",cor:"V"},{txt:"Nessuno risponde all'annuncio",cor:"F"}]},
     {id:31, sez:"D", testo_id:"tD", tipo: "multipla", testo: "Le persone che rispondono sono", opzioni: ["Poche", "Moltissime", "Solo parenti", "Tutte maleducate"], corretta: 1},
     {id:32, sez:"D", testo_id:"tD", tipo: "aperta", testo: "Perché il protagonista continua a mettere annunci?"},
     {id:33, sez:"D", testo_id:"tD", tipo: "multipla", testo: "L'ambiente descritto è", opzioni: ["Una grande città", "Un piccolo paese", "La campagna", "Non si capisce"], corretta: 3},
-    // SEZIONE E - LESSICO
     {id:34, sez:"E", testo_id:"tE", tipo: "multipla", testo: "Sinonimo di 'effimero'?", opzioni: ["Eterno", "Breve", "Pesante", "Colorato"], corretta: 1},
     {id:35, sez:"E", testo_id:"tE", tipo: "multipla", testo: "Contrario di 'altruista'?", opzioni: ["Generoso", "Egoista", "Simpatico", "Veloce"], corretta: 1},
     {id:36, sez:"E", testo_id:"tE", tipo: "multipla", testo: "Cosa significa 'perseverare'?", opzioni: ["Arrendersi", "Insistere", "Dimenticare", "Gridare"], corretta: 1},
     {id:37, sez:"E", testo_id:"tE", tipo: "aperta", testo: "Spiega il significato di 'scaramanzia'."},
-    // SEZIONE F - GRAMMATICA
     {id:38, sez:"F", testo_id:"tF", tipo: "vf", testo: "Attivo o Passivo?", affermazioni:[{txt:"Marco mangia la mela (Attivo)",cor:"V"},{txt:"La mela è mangiata da Marco (Passivo)",cor:"V"}]},
     {id:39, sez:"F", testo_id:"tF", tipo: "multipla", testo: "Qual è il passato remoto di 'leggere'?", opzioni: ["Lesse", "Leggerà", "Leggeva", "Ha letto"], corretta: 0},
     {id:40, sez:"F", testo_id:"tF", tipo: "aperta", testo: "Fai l'analisi logica: 'Il gatto dorme sulla sedia'."}
@@ -179,10 +173,16 @@ function buildDots() {
 }
 
 function mostraD(idx) {
-  cur = idx; const d = DOMANDE[idx]; const T = TESTI[d.testo_id];
+  cur = idx; 
+  const d = DOMANDE[idx]; 
+  const T = TESTI[d.testo_id];
+  
+  // AGGIORNAMENTO TESTO A SINISTRA
   document.getElementById('pan-label').textContent = T.label;
   document.getElementById('pan-scroll').innerHTML = T.html;
+  
   let html = `<div class="dom-sezione">Sezione ${d.sez}</div><div class="dom-num">Domanda ${d.id}</div><div class="dom-testo">${d.testo}</div>`;
+  
   if(d.tipo === 'multipla') {
     html += d.opzioni.map((o, i) => `<label class="opz ${risposte[idx]===i?'sel':''}" onclick="selR(${idx},${i})"><div class="opz-let">${String.fromCharCode(65+i)}</div><span>${o}</span></label>`).join('');
   } else if(d.tipo === 'vf') {
@@ -191,7 +191,7 @@ function mostraD(idx) {
       <button class="vf-btn ${risposte[idx]?.[i]==='F'?'sf':''}" onclick="selVF(${idx},${i},'F')">F</button>
     </div></div>`).join('');
   } else {
-    html += `<textarea class="aperta-ta" oninput="risposte[${idx}]=this.value; aggDots()">${risposte[idx]||''}</textarea>`;
+    html += `<textarea class="aperta-ta" oninput="risposte[${idx}]=this.value; aggDots()" placeholder="Rispondi qui...">${risposte[idx]||''}</textarea>`;
   }
   document.getElementById('dom-content').innerHTML = html;
   aggDots();
@@ -218,10 +218,7 @@ function consegna(auto=false) {
   document.getElementById('footer').style.display = 'none';
   const r = document.getElementById('report'); r.style.display = 'block';
   r.innerHTML = `<div style="max-width:600px; margin:auto; background:white; padding:40px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.1)">
-    <h1>Prova Terminata!</h1><p>Bravo/a <strong>${nome}</strong>.</p>
-    <div style="background:#fffbea; border:2px dashed #f0d060; padding:20px; margin:20px 0; border-radius:10px">
-      <p>Scarica il report e caricalo su <strong>Google Classroom</strong>.</p>
-    </div>
+    <h1>Prova Terminata!</h1><p>Studente: <strong>${nome}</strong></p>
     <button class="btn-salva" onclick="salvaReport()">💾 SALVA REPORT E CONSEGNA</button>
   </div>`;
 }
