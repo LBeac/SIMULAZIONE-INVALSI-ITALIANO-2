@@ -8,13 +8,10 @@
 :root{--blu:#1a3a5c;--blu2:#2a5298;--blu3:#e8eef7;--verde:#1e7e34;--rosso:#c0392b;--arancio:#e67e22;--grigio:#f5f6f7;--bordo:#d0d5de;--testo:#1a1a2e;--header:52px;--footer:56px}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#e9ecef;color:var(--testo);height:100vh;overflow:hidden;display:flex;flex-direction:column}
-
-/* INTRO */
 #intro{position:fixed;inset:0;background:linear-gradient(135deg,#1a3a5c 0%,#2a5298 100%);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
 .intro-card{background:#fff;border-radius:12px;max-width:700px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}
 .intro-top{background:var(--blu);color:#fff;padding:24px 32px;display:flex;align-items:center;gap:16px}
 .inv-badge{background:#fff;color:var(--blu);font-weight:900;font-size:15px;padding:6px 12px;border-radius:5px;letter-spacing:1px}
-.intro-top h1{font-size:18px;font-weight:700}
 .intro-body{padding:28px 32px}
 .info-strip{display:flex;gap:12px;margin-bottom:22px}
 .info-chip{flex:1;background:var(--grigio);border:1px solid var(--bordo);border-radius:8px;padding:12px;text-align:center}
@@ -24,8 +21,6 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#e9ecef;color:var(--test
 .nome-wrap input{width:100%;padding:12px;border:2px solid var(--bordo);border-radius:7px;font-size:14px;margin-bottom:15px}
 .btn-avvia{width:100%;padding:14px;background:var(--blu);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer}
 .btn-avvia:disabled{background:#ccc;cursor:not-allowed}
-
-/* LAYOUT */
 #header{height:var(--header);background:var(--blu);color:#fff;display:flex;align-items:center;padding:0 16px;gap:12px;z-index:10}
 .h-timer{background:rgba(255,255,255,.15);padding:5px 12px;border-radius:6px;font-weight:800;font-variant-numeric:tabular-nums}
 #main{flex:1;display:flex;overflow:hidden}
@@ -33,8 +28,6 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#e9ecef;color:var(--test
 .pan-label{background:var(--blu);color:#fff;font-size:11px;font-weight:700;padding:8px 16px}
 .pan-scroll{flex:1;overflow-y:auto;padding:25px;font-family:'Georgia',serif;line-height:1.8;font-size:15px}
 #pan-domanda{flex:1;background:var(--grigio);overflow-y:auto;padding:30px}
-
-/* DOMANDE */
 .dom-sezione{font-size:10px;font-weight:700;color:var(--blu2);background:var(--blu3);padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:10px}
 .dom-num{font-size:20px;font-weight:900;color:var(--blu);margin-bottom:10px}
 .opz{display:flex;align-items:center;gap:12px;padding:12px;border:2px solid var(--bordo);border-radius:8px;background:#fff;cursor:pointer;margin-bottom:8px;transition:0.2s}
@@ -42,32 +35,29 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#e9ecef;color:var(--test
 .opz input{display:none}
 .opz-let{width:25px;height:25px;border-radius:50%;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
 .opz.sel .opz-let{background:var(--blu2);color:#fff;border-color:var(--blu2)}
+.vf-row{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#fff;border:1px solid var(--bordo);border-radius:8px;margin-bottom:5px}
+.vf-btns{display:flex;gap:5px}
+.vf-btn{padding:5px 15px;border:1px solid #ccc;border-radius:4px;cursor:pointer;font-weight:bold}
+.vf-btn.sv{background:var(--verde);color:#fff;border-color:var(--verde)}
+.vf-btn.sf{background:var(--rosso);color:#fff;border-color:var(--rosso)}
 .aperta-ta{width:100%;height:120px;padding:15px;border:2px solid var(--bordo);border-radius:8px;font-family:inherit}
-
-/* FOOTER */
 #footer{height:var(--footer);background:var(--blu);display:flex;align-items:center;padding:0 16px;color:#fff}
 .ft-btn{padding:8px 18px;border-radius:6px;border:none;font-weight:700;cursor:pointer}
 .ft-prev{background:rgba(255,255,255,0.1);color:#fff;margin-right:10px}
 .ft-next{background:#fff;color:var(--blu)}
-.ft-dots{display:flex;gap:5px;margin:0 20px}
-.ft-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer}
+.ft-dots{display:flex;gap:5px;margin:0 20px;overflow-x:auto;padding:5px}
+.ft-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;flex-shrink:0}
 .ft-dot.ans{background:rgba(255,255,255,0.8)}
 .ft-dot.cur{background:#4fc3f7;transform:scale(1.3)}
 .ft-dot.flg{background:var(--arancio)}
-
-/* REPORT */
-.btn-salva{background:var(--verde);color:white;font-size:1.6rem;font-weight:800;padding:25px;border:none;border-radius:15px;cursor:pointer;width:100%;max-width:500px;box-shadow:0 8px 20px rgba(30,126,52,0.3);margin-top:20px;transition:transform 0.2s}
-.btn-salva:hover{transform:scale(1.02);background:#166a2b}
+.btn-salva{background:var(--verde);color:white;font-size:1.6rem;font-weight:800;padding:25px;border:none;border-radius:15px;cursor:pointer;width:100%;max-width:500px;box-shadow:0 8px 20px rgba(30,126,52,0.3);margin-top:20px}
 </style>
 </head>
 <body>
 
 <div id="intro">
   <div class="intro-card">
-    <div class="intro-top">
-      <div class="inv-badge">INVALSI</div>
-      <h1>Simulazione Italiano – Prova 1</h1>
-    </div>
+    <div class="intro-top"><div class="inv-badge">INVALSI</div><h1>Simulazione Italiano – Prova 1</h1></div>
     <div class="intro-body">
       <div class="info-strip">
         <div class="info-chip"><div class="lbl">Domande</div><div class="val">40</div></div>
@@ -75,9 +65,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#e9ecef;color:var(--test
       </div>
       <div class="nome-wrap">
         <label>Nome e Cognome</label>
-        <input id="nome" type="text" placeholder="Scrivi qui il tuo nome..." oninput="document.getElementById('btnav').disabled=this.value.trim().length<3">
-        <label>Classe (es. 3A)</label>
-        <input id="classe" type="text" placeholder="La tua classe...">
+        <input id="nome" type="text" placeholder="Scrivi qui..." oninput="document.getElementById('btnav').disabled=this.value.trim().length<3">
+        <label>Classe</label><input id="classe" type="text" placeholder="Es. 3A">
       </div>
       <button class="btn-avvia" id="btnav" disabled onclick="avvia()">INIZIA PROVA</button>
     </div>
@@ -91,13 +80,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#e9ecef;color:var(--test
 </div>
 
 <div id="main" style="display:none">
-  <div id="pan-testo">
-    <div class="pan-label" id="pan-label">TESTO</div>
-    <div class="pan-scroll" id="pan-scroll"></div>
-  </div>
-  <div id="pan-domanda">
-    <div id="dom-content"></div>
-  </div>
+  <div id="pan-testo"><div class="pan-label" id="pan-label">TESTO</div><div class="pan-scroll" id="pan-scroll"></div></div>
+  <div id="pan-domanda"><div id="dom-content"></div></div>
 </div>
 
 <div id="footer" style="display:none">
@@ -112,33 +96,62 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#e9ecef;color:var(--test
 <script>
 let cur=0, risposte={}, flagged={}, nome='', classe='', sec=75*60, timerInt=null;
 
-const PROVA = {
-  sezioni: [
-    { id:'A', nome:'Testo Letterario', testo_id:'tA' },
-    { id:'B', nome:'Testo Non Letterario', testo_id:'tB' },
-    { id:'C', nome:'Testo Espositivo', testo_id:'tC' },
-    { id:'D', nome:'Testo Narrativo 2', testo_id:'tD' },
-    { id:'E', nome:'Lessico', testo_id:'tE' },
-    { id:'F', nome:'Grammatica', testo_id:'tF' }
-  ]
-};
-
 const TESTI = {
-  "tA": { label: "TESTO A", html: "<h3>Io e la scuola</h3><p>Natalia Ginzburg...</p><p>A undici anni seppi che dovevo andare a scuola da sola...</p>" },
-  "tB": { label: "TESTO B", html: "<h3>Carta contro Pixel</h3><p>La lettura digitale sta cambiando il nostro cervello...</p>" },
-  "tC": { label: "TESTO C", html: "<h3>L'Acqua</h3><p>Risorsa preziosa e scarsa nel mondo moderno...</p>" },
-  "tD": { label: "TESTO D", html: "<h3>L'Inserzionista</h3><p>Aveva pubblicato il primo annuncio quasi per scherzo. Si trattava di un vecchio divano...</p>" },
-  "tE": { label: "LESSICO", html: "<h3>Sezione Lessico</h3><p>Analisi del significato delle parole nel contesto.</p>" },
-  "tF": { label: "GRAMMATICA", html: "<h3>Riflessione sulla Lingua</h3><p>Esercizi di morfologia e sintassi.</p>" }
+  "tA": { label: "TESTO A", html: "<h3>Io e la scuola</h3><p>Natalia Ginzburg...</p><p>A undici anni seppi che dovevo andare a scuola da sola. Questa notizia mi colmò di sconforto...</p>" },
+  "tB": { label: "TESTO B", html: "<h3>Carta contro Pixel</h3><p>Uno dei video più condivisi negli ultimi anni mostra una bambina di un anno che gioca con un tablet...</p>" },
+  "tC": { label: "TESTO C", html: "<h3>La scarsità dell'acqua</h3><p>L'acqua è indispensabile per la vita: senza di essa nessun organismo vivente potrebbe sopravvivere...</p>" },
+  "tD": { label: "TESTO D", html: "<h3>L'inserzionista</h3><p>Aveva pubblicato il primo annuncio quasi per scherzo. Si trattava di un vecchio divano di cui voleva liberarsi...</p>" },
+  "tE": { label: "LESSICO", html: "<h3>Lessico</h3><p>Analisi del significato delle parole nel contesto.</p>" },
+  "tF": { label: "GRAMMATICA", html: "<h3>Riflessione sulla lingua</h3><p>Quesiti di morfologia, sintassi e ortografia.</p>" }
 };
 
 const DOMANDE = [
-  { id: 1, sez: "A", testo_id: "tA", tipo: "multipla", testo: "Perché la protagonista era sconfortata?", opzioni: ["Per la scuola", "Perché doveva andare sola", "Perché era stanca", "Per il freddo"], corretta: 1 },
-  // ... aggiungi qui tutte le tue domande ...
-  { id: 27, sez: "C", testo_id: "tC", tipo: "multipla", testo: "Qual è il tema principale del testo C?", opzioni: ["Inquinamento", "Spreco d'acqua", "I ghiacciai", "L'agricoltura"], corretta: 1 },
-  { id: 28, sez: "D", testo_id: "tD", tipo: "multipla", testo: "Perché l'inserzionista vende il divano?", opzioni: ["Per soldi", "Per liberarsene", "È rotto", "Trasloco"], corretta: 1 },
-  { id: 34, sez: "E", testo_id: "tE", tipo: "multipla", testo: "Cosa significa 'stipulare' in questo contesto?", opzioni: ["Sciogliere", "Firmare/Concludere", "Cancellare", "Leggere"], corretta: 1 },
-  { id: 40, sez: "F", testo_id: "tF", tipo: "aperta", testo: "Analizza la frase: 'Il cane corre nel prato'." }
+    // SEZIONE A
+    {id:1, sez:"A", testo_id:"tA", tipo:"multipla", testo:"La madre cambiava spesso le maestre perché la figlia", opzioni:["aveva un carattere difficile","era svogliata e lenta","mostrava ostilità","era troppo vivace"], corretta:1},
+    {id:2, sez:"A", testo_id:"tA", tipo:"multipla", testo:"L'espressione 'colmare di sconforto' significa che l'autrice era", opzioni:["molto triste","molto arrabbiata","molto sorpresa","molto preoccupata"], corretta:0},
+    {id:3, sez:"A", testo_id:"tA", tipo:"multipla", testo:"Perché andare a scuola da sola era un problema?", opzioni:["Aveva paura dei cani","Non conosceva la strada","Si sentiva abbandonata","Era molto pigra"], corretta:2},
+    {id:4, sez:"A", testo_id:"tA", tipo:"multipla", testo:"Il portiere viene descritto come", opzioni:["gentile","severo","indifferente","minaccioso"], corretta:3},
+    {id:5, sez:"A", testo_id:"tA", tipo:"multipla", testo:"Che cosa faceva l'autrice per evitare il portiere?", opzioni:["Correva veloce","Cambiava strada","Aspettava che rientrasse","Chiedeva aiuto"], corretta:0},
+    {id:6, sez:"A", testo_id:"tA", tipo:"aperta", testo:"Descrivi in poche parole il rapporto tra l'autrice e la scuola."},
+    {id:7, sez:"A", testo_id:"tA", tipo:"vf", testo:"Indica se vero o falso:", affermazioni:[{txt:"Le elementari le fece a casa",cor:"V"},{txt:"La madre la accompagnava sempre",cor:"F"}]},
+    {id:8, sez:"A", testo_id:"tA", tipo:"multipla", testo:"Il tono del racconto è", opzioni:["ironico","nostalgico","arrabbiato","distaccato"], corretta:1},
+    {id:9, sez:"A", testo_id:"tA", tipo:"aperta", testo:"Cosa rappresentava il portiere per la bambina?"},
+    {id:10, sez:"A", testo_id:"tA", tipo:"multipla", testo:"La parola 'sconforto' è un", opzioni:["nome","verbo","aggettivo","avverbio"], corretta:0},
+    {id:11, sez:"A", testo_id:"tA", tipo:"multipla", testo:"L'autrice da grande è diventata una", opzioni:["maestra","scrittrice","portinaia","dottoressa"], corretta:1},
+    {id:12, sez:"A", testo_id:"tA", tipo:"aperta", testo:"Perché la madre cercava maestre 'pazienti'?"},
+    // SEZIONE B
+    {id:13, sez:"B", testo_id:"tB", tipo:"multipla", testo:"I 'nativi digitali' sono", opzioni:["persone nate dopo il 2000","esperti di computer","chi è nato con la tecnologia","chi vive in città digitali"], corretta:2},
+    {id:14, sez:"B", testo_id:"tB", tipo:"multipla", testo:"Leggere su carta rispetto al tablet è", opzioni:["più faticoso","meno efficace","più profondo","uguale"], corretta:2},
+    {id:15, sez:"B", testo_id:"tB", tipo:"aperta", testo:"Qual è il rischio principale dei pixel secondo il testo?"},
+    {id:16, sez:"B", testo_id:"tB", tipo:"vf", testo:"Vero o Falso?", affermazioni:[{txt:"Il cervello non cambia con i tablet",cor:"F"},{txt:"La carta aiuta la memoria spaziale",cor:"V"}]},
+    {id:17, sez:"B", testo_id:"tB", tipo:"multipla", testo:"Cosa si intende per 'memoria spaziale'?", opzioni:["Ricordare dove sono i pianeti","Ricordare la posizione delle parole nella pagina","Sapersi orientare nel bosco","Usare il GPS"], corretta:1},
+    {id:18, sez:"B", testo_id:"tB", tipo:"aperta", testo:"Perché la bambina del video scambia la rivista per un tablet rotto?"},
+    {id:19, sez:"B", testo_id:"tB", tipo:"multipla", testo:"L'autore del testo B è", opzioni:["un poeta","uno scienziato/giornalista","un programmatore","un bambino"], corretta:1},
+    {id:20, sez:"B", testo_id:"tB", tipo:"aperta", testo:"Riassumi la tesi principale del testo B."},
+    // SEZIONE C
+    {id:21, sez:"C", testo_id:"tC", tipo: "multipla", testo: "Perché l'acqua dolce è scarsa?", opzioni: ["È inquinata", "È quasi tutta salata", "I fiumi sono secchi", "Piove poco"], corretta: 1},
+    {id:22, sez:"C", testo_id:"tC", tipo: "multipla", testo: "Il settore che consuma più acqua è", opzioni: ["L'industria", "L'uso domestico", "L'agricoltura", "Il turismo"], corretta: 2},
+    {id:23, sez:"C", testo_id:"tC", tipo: "aperta", testo: "Cosa si intende per 'oro blu'?"},
+    {id:24, sez:"C", testo_id:"tC", tipo: "vf", testo: "Vero o Falso?", affermazioni:[{txt:"L'acqua è una risorsa infinita",cor:"F"},{txt:"Il cambiamento climatico riduce l'acqua",cor:"V"}]},
+    {id:25, sez:"C", testo_id:"tC", tipo: "multipla", testo: "Un modo per risparmiare acqua è", opzioni: ["Fare bagni lunghi", "Usare la lavatrice vuota", "Riparare i rubinetti", "Innaffiare a mezzogiorno"], corretta: 2},
+    {id:26, sez:"C", testo_id:"tC", tipo: "aperta", testo: "Perché l'acqua è definita indispensabile?"},
+    {id:27, sez:"C", testo_id:"tC", tipo: "multipla", testo: "Il testo C ha uno scopo", opzioni: ["Informativo", "Narrativo", "Poetico", "Persuasivo"], corretta: 0},
+    // SEZIONE D
+    {id:28, sez:"D", testo_id:"tD", tipo: "multipla", testo: "L'inserzionista vende oggetti per", opzioni: ["Arricchirsi", "Gioco/Passatempo", "Necessità", "Mandarli in discarica"], corretta: 1},
+    {id:29, sez:"D", testo_id:"tD", tipo: "aperta", testo: "Cosa prova il protagonista quando vende il divano?"},
+    {id:30, sez:"D", testo_id:"tD", tipo: "vf", testo: "Vero o Falso?", affermazioni:[{txt:"Vende un vecchio divano",cor:"V"},{txt:"Nessuno risponde all'annuncio",cor:"F"}]},
+    {id:31, sez:"D", testo_id:"tD", tipo: "multipla", testo: "Le persone che rispondono sono", opzioni: ["Poche", "Moltissime", "Solo parenti", "Tutte maleducate"], corretta: 1},
+    {id:32, sez:"D", testo_id:"tD", tipo: "aperta", testo: "Perché il protagonista continua a mettere annunci?"},
+    {id:33, sez:"D", testo_id:"tD", tipo: "multipla", testo: "L'ambiente descritto è", opzioni: ["Una grande città", "Un piccolo paese", "La campagna", "Non si capisce"], corretta: 3},
+    // SEZIONE E - LESSICO
+    {id:34, sez:"E", testo_id:"tE", tipo: "multipla", testo: "Sinonimo di 'effimero'?", opzioni: ["Eterno", "Breve", "Pesante", "Colorato"], corretta: 1},
+    {id:35, sez:"E", testo_id:"tE", tipo: "multipla", testo: "Contrario di 'altruista'?", opzioni: ["Generoso", "Egoista", "Simpatico", "Veloce"], corretta: 1},
+    {id:36, sez:"E", testo_id:"tE", tipo: "multipla", testo: "Cosa significa 'perseverare'?", opzioni: ["Arrendersi", "Insistere", "Dimenticare", "Gridare"], corretta: 1},
+    {id:37, sez:"E", testo_id:"tE", tipo: "aperta", testo: "Spiega il significato di 'scaramanzia'."},
+    // SEZIONE F - GRAMMATICA
+    {id:38, sez:"F", testo_id:"tF", tipo: "vf", testo: "Attivo o Passivo?", affermazioni:[{txt:"Marco mangia la mela (Attivo)",cor:"V"},{txt:"La mela è mangiata da Marco (Passivo)",cor:"V"}]},
+    {id:39, sez:"F", testo_id:"tF", tipo: "multipla", testo: "Qual è il passato remoto di 'leggere'?", opzioni: ["Lesse", "Leggerà", "Leggeva", "Ha letto"], corretta: 0},
+    {id:40, sez:"F", testo_id:"tF", tipo: "aperta", testo: "Fai l'analisi logica: 'Il gatto dorme sulla sedia'."}
 ];
 
 function avvia() {
@@ -149,8 +162,7 @@ function avvia() {
   document.getElementById('main').style.display = 'flex';
   document.getElementById('footer').style.display = 'flex';
   document.getElementById('hnome').textContent = nome + " (" + classe + ")";
-  buildDots();
-  mostraD(0);
+  buildDots(); mostraD(0);
   timerInt = setInterval(() => {
     sec--;
     let m = Math.floor(sec/60), s = sec%60;
@@ -160,88 +172,70 @@ function avvia() {
 }
 
 function buildDots() {
-  const c = document.getElementById('fdots');
-  c.innerHTML = '';
+  const c = document.getElementById('fdots'); c.innerHTML = '';
   DOMANDE.forEach((_, i) => {
-    const d = document.createElement('div');
-    d.className = 'ft-dot';
-    d.id = `dot${i}`;
-    d.onclick = () => mostraD(i);
-    c.appendChild(d);
+    const d = document.createElement('div'); d.className = 'ft-dot'; d.id = `dot${i}`; d.onclick = () => mostraD(i); c.appendChild(d);
   });
 }
 
 function mostraD(idx) {
-  cur = idx;
-  const d = DOMANDE[idx];
-  const T = TESTI[d.testo_id];
+  cur = idx; const d = DOMANDE[idx]; const T = TESTI[d.testo_id];
   document.getElementById('pan-label').textContent = T.label;
   document.getElementById('pan-scroll').innerHTML = T.html;
-  
   let html = `<div class="dom-sezione">Sezione ${d.sez}</div><div class="dom-num">Domanda ${d.id}</div><div class="dom-testo">${d.testo}</div>`;
-  
   if(d.tipo === 'multipla') {
-    html += d.opzioni.map((o, i) => `
-      <label class="opz ${risposte[idx]===i?'sel':''}" onclick="selR(${idx},${i})">
-        <div class="opz-let">${String.fromCharCode(65+i)}</div><span>${o}</span>
-      </label>`).join('');
+    html += d.opzioni.map((o, i) => `<label class="opz ${risposte[idx]===i?'sel':''}" onclick="selR(${idx},${i})"><div class="opz-let">${String.fromCharCode(65+i)}</div><span>${o}</span></label>`).join('');
+  } else if(d.tipo === 'vf') {
+    html += d.affermazioni.map((a, i) => `<div class="vf-row"><span>${a.txt}</span><div class="vf-btns">
+      <button class="vf-btn ${risposte[idx]?.[i]==='V'?'sv':''}" onclick="selVF(${idx},${i},'V')">V</button>
+      <button class="vf-btn ${risposte[idx]?.[i]==='F'?'sf':''}" onclick="selVF(${idx},${i},'F')">F</button>
+    </div></div>`).join('');
   } else {
-    html += `<textarea class="aperta-ta" oninput="risposte[${idx}]=this.value; aggDots()" placeholder="Scrivi la tua risposta qui...">${risposte[idx]||''}</textarea>`;
+    html += `<textarea class="aperta-ta" oninput="risposte[${idx}]=this.value; aggDots()">${risposte[idx]||''}</textarea>`;
   }
-  
   document.getElementById('dom-content').innerHTML = html;
   aggDots();
 }
 
 function selR(idx, val) { risposte[idx] = val; mostraD(idx); }
-
+function selVF(idx, i, val) { if(!risposte[idx]) risposte[idx]={}; risposte[idx][i]=val; mostraD(idx); }
 function aggDots() {
   DOMANDE.forEach((_, i) => {
     const dot = document.getElementById(`dot${i}`);
-    dot.className = `ft-dot ${i===cur?'cur':''} ${risposte[i]!==undefined?'ans':''} ${flagged[i]?'flg':''}`;
+    if(dot) dot.className = `ft-dot ${i===cur?'cur':''} ${risposte[i]!==undefined?'ans':''} ${flagged[i]?'flg':''}`;
   });
   document.getElementById('fnext').style.display = cur === DOMANDE.length-1 ? 'none' : 'block';
   document.getElementById('fconsegna').style.display = cur === DOMANDE.length-1 ? 'block' : 'none';
 }
-
 function navD(s) { let n=cur+s; if(n>=0 && n<DOMANDE.length) mostraD(n); }
 function toggleFlag() { flagged[cur] = !flagged[cur]; aggDots(); }
 
 function consegna(auto=false) {
-  if(!auto && !confirm("Vuoi consegnare la prova?")) return;
+  if(!auto && !confirm("Vuoi consegnare?")) return;
   clearInterval(timerInt);
   document.getElementById('header').style.display = 'none';
   document.getElementById('main').style.display = 'none';
   document.getElementById('footer').style.display = 'none';
-  const r = document.getElementById('report');
-  r.style.display = 'block';
-  
-  r.innerHTML = `
-    <div style="max-width:600px; margin:auto; background:white; padding:40px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.1)">
-      <h1 style="color:var(--blu)">Prova Terminata!</h1>
-      <p style="font-size:1.2rem; margin:20px 0">Bravo/a <strong>${nome}</strong>, hai completato la simulazione.</p>
-      <div style="background:#fffbea; border:2px dashed #f0d060; padding:20px; border-radius:10px; margin:20px 0">
-        <p><strong>Cosa fare ora?</strong></p>
-        <p>Clicca il tasto verde qui sotto per scaricare il report. Una volta salvato, caricalo su <strong>Google Classroom</strong>.</p>
-      </div>
-      <button class="btn-salva" onclick="salvaReport()">💾 SALVA REPORT E CONSEGNA</button>
-      <p style="margin-top:20px; color:#888; font-size:0.9rem">Il file verrà salvato come .txt nella tua cartella Download</p>
-    </div>`;
+  const r = document.getElementById('report'); r.style.display = 'block';
+  r.innerHTML = `<div style="max-width:600px; margin:auto; background:white; padding:40px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.1)">
+    <h1>Prova Terminata!</h1><p>Bravo/a <strong>${nome}</strong>.</p>
+    <div style="background:#fffbea; border:2px dashed #f0d060; padding:20px; margin:20px 0; border-radius:10px">
+      <p>Scarica il report e caricalo su <strong>Google Classroom</strong>.</p>
+    </div>
+    <button class="btn-salva" onclick="salvaReport()">💾 SALVA REPORT E CONSEGNA</button>
+  </div>`;
 }
 
 function salvaReport() {
-  let t = `REPORT INVALSI - ITALIANO\nSTUENTE: ${nome}\nCLASSE: ${classe}\nDATA: ${new Date().toLocaleString()}\n\n`;
+  let t = `REPORT INVALSI - ${nome} (${classe})\nDATA: ${new Date().toLocaleString()}\n\n`;
   DOMANDE.forEach((d, i) => {
     let ris = risposte[i];
-    let rScritta = (d.tipo==='multipla') ? (ris!==undefined ? String.fromCharCode(65+ris) : "NON RISPOSTA") : (ris || "NON RISPOSTA");
-    t += `Domanda ${d.id} (${d.sez}): ${rScritta}\n`;
+    let rScritta = (d.tipo==='multipla') ? (ris!==undefined?String.fromCharCode(65+ris):"X") : (d.tipo==='vf'? JSON.stringify(ris): (ris||"X"));
+    t += `Domanda ${d.id}: ${rScritta}\n`;
   });
-  
   const blob = new Blob([t], {type: 'text/plain'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `Invalsi_${nome.replace(/\s+/g,'_')}_${classe}.txt`;
-  a.click();
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `Invalsi_${nome.replace(/\s+/g,'_')}.txt`; a.click();
 }
 </script>
 </body>
